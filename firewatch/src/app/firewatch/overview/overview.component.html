@@ -1,0 +1,147 @@
+<!-- Copyright (c) 2017 . All Rights Reserved. -->
+<div class="container-fluid">
+    <!-- <div class="card-block">
+        Overview
+        
+        <ul>
+            <li>item:</li>
+            <li class="text" style="display:unset" *ngFor="let note of notes | async">
+                {{note.name}}
+            </li>
+        </ul>
+    </div> -->
+    
+    <div class="col-md-12">
+        <h1 style="text-align:center;">FireCloud</h1>
+    </div>
+    
+    <div class="row" style="margin-top:25px;">
+        <agm-map 
+        [latitude]="lat"
+        [longitude]="lng"
+        [zoom]="zoom"
+        (mapClick)="mapClicked($event)" class="col-md-12">
+        
+        <agm-marker 
+        *ngFor="let m of markers; let i = index"
+        (markerClick)="clickedMarker(m.label, i)"
+        [latitude]="m.lat"
+        [longitude]="m.lng"
+        [label]="m.label"
+        [markerDraggable]="m.draggable"
+        (dragEnd)="markerDragEnd(m, $event)">
+    </agm-marker>
+    <agm-marker 
+    *ngFor="let m of peoplemarkers; let i = index"
+    (markerClick)="clickedMarker(m.label, i)"
+    [latitude]="m.lat"
+    [longitude]="m.lng"
+    [label]="m.label"
+    [iconUrl]="{url: './assets/images/bluedot.png',
+    scaledSize: {
+        width: 20,
+        height: 20
+    }}"
+    [markerDraggable]="m.draggable"
+    (dragEnd)="markerDragEnd(m, $event)"></agm-marker>
+    
+    <agm-marker 
+    *ngFor="let m of firesmarkers; let i = index"
+    (markerClick)="clickedMarker(m.label, i)"
+    [latitude]="m.lat"
+    [longitude]="m.lng"
+    [label]="m.label"
+    [iconUrl]="{url: './assets/images/fire.png',
+    scaledSize: {
+        width: 50,
+        height: 50
+    }}"
+    [markerDraggable]="m.draggable"
+    (dragEnd)="markerDragEnd(m, $event)"></agm-marker>
+
+    <agm-marker 
+    *ngFor="let m of safezonemarkers; let i = index"
+    (markerClick)="clickedMarker(m.label, i)"
+    [latitude]="m.lat"
+    [longitude]="m.lng"
+    [label]="m.label"
+    [iconUrl]="{url: './assets/images/safezone.png',
+    scaledSize: {
+        width: 50,
+        height: 50
+    }}"
+    [markerDraggable]="m.draggable"
+    (dragEnd)="markerDragEnd(m, $event)"></agm-marker>
+    
+    <!-- <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+        [radius]="5000"
+        [fillColor]="'red'"
+        [circleDraggable]="true"
+        [editable]="true">
+    </agm-circle>  -->
+</agm-map>   
+</div>
+<div class="row" style="margin-top: 25px;">
+    <div class="col-md-3" style="border-right: black; border-width: 1px; border: solid;">
+        <h4>Announcements</h4>
+        <div class="content-fluid">
+            <table class="table table-striped">
+                <tr>
+                    <th>Details</th>
+                </tr>
+                <tr *ngFor="let u of announcementArray">
+                    <td>{{u.text}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3" style="border-right: black; border-width: 1px; border: solid;">
+        <h4>Fires</h4>
+        <div class="content-fluid">
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Threat level</th>
+                </tr>
+                <tr *ngFor="let u of fireArray">
+                    <td>{{u.id}}</td>
+                    <td>{{u.threatlevel}}</td>
+                </tr>
+            </table>
+            
+        </div>
+    </div>
+    <div class="col-md-3" style="border-right: black; border-width: 1px; border: solid;">
+        <h4>People</h4>
+        <div class="content-fluid">
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                </tr>
+                <tr *ngFor="let u of peopleArray">
+                    <td>{{u.fullname}}</td>
+                    <td>{{u.missing}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3" style="border-right: black; border-width: 1px; border: solid;">
+        <h4>Safezones</h4>
+        <div class="content-fluid">
+            <table class="table table-striped">
+                <tr>
+                    <th>Location</th>
+                    <th>Capacity</th>
+                    <th>Occupants</th>
+                </tr>
+                <tr *ngFor="let u of safezoneArray">
+                    <td>{{u.name}}</td>
+                    <td>{{u.capacity}}</td>
+                    <td>{{u.occupants}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
