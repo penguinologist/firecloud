@@ -103,24 +103,24 @@ export class OverviewComponent implements OnInit {
     
     markers: marker[] = [
         //Sample data
-        {
-            lat: 40.703788,
-            lng: -73.876521,
-            label: 'Harry',
-            draggable: false
-        },
-        {
-            lat: 40.723790,
-            lng: -74.776572,
-            label: 'Sam',
-            draggable: false
-        },
-        {
-            lat: 40.783791,
-            lng: -74.476542,
-            label: 'Shannon',
-            draggable: false
-        }
+        // {
+        //     lat: 40.703788,
+        //     lng: -73.876521,
+        //     label: 'Harry',
+        //     draggable: false
+        // },
+        // {
+        //     lat: 40.723790,
+        //     lng: -74.776572,
+        //     label: 'Sam',
+        //     draggable: false
+        // },
+        // {
+        //     lat: 40.783791,
+        //     lng: -74.476542,
+        //     label: 'Shannon',
+        //     draggable: false
+        // }
     ]
     
     peoplemarkers:marker[] = [
@@ -222,7 +222,7 @@ export class OverviewComponent implements OnInit {
         this.people = this.peopleCollection.valueChanges();
         
         this.people.subscribe(result => {
-            this.peopleArray = [];
+            this.peoplemarkers = [];
             this.peopleArray = result;
             console.log("items in people db: " + this.peopleArray.length);
             this.peopleArray.forEach(people => {
